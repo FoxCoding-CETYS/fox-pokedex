@@ -14,6 +14,6 @@
 // en un <Link href={`/pokemon/${nombre}`}> para que al darle clic te lleve ahí.
 // ─────────────────────────────────────────────────────────────
 
-export default function PokemonCard() {
-  return <div className="card">Soy una tarjeta vacía 😢</div>;
+export default function PokemonCard({ id }) {
+  return <div className="card">{id}</div>;
 }

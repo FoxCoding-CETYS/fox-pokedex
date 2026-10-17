@@ -1,17 +1,17 @@
 import PokemonCard from "@/components/PokemonCard";
-import { pokemonLocales } from "@/data/pokemon";
+import { obtenerPokemons } from "@/lib/pokeapi";
 
-// TODO (Etapa 3): cambia pokemonLocales por datos reales de la API.
-// Pistas: convierte esta función en `async` y usa `await obtenerPokemons()`
-// de "@/lib/pokeapi".
+// La página es "async": espera los datos de la API ANTES de mandarse al navegador.
+// Este código corre en el servidor, no en la computadora de quien visita el sitio.
+export default async function Pokedex() {
+  const pokemons = await obtenerPokemons();
 
-export default function Pokedex() {
   return (
     <section>
       <h1>Pokédex</h1>
+      <p className="pista">{pokemons.length} pokémon cargados desde la PokeAPI</p>
       <div className="grid">
-        {pokemonLocales.map((p) => (
-          // "key" ayuda a React a identificar cada elemento de la lista
+        {pokemons.map((p) => (
           <PokemonCard key={p.id} id={p.id} nombre={p.nombre} imagen={p.imagen} />
         ))}
       </div>
